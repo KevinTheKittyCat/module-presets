@@ -1,0 +1,10 @@
+<form class="preset-browser">
+    {{#each modules}}
+    <div class="list-item" onclick="console.log('argh')"> {{title}} <p>{{JSON.stringify(content)}}</p></div>
+    {{/each}}
+    <footer class="form-footer">
+        <button type="submit" name="submit">
+            <i class="fas fa-save"></i> {{localize "FXMASTER.SaveChanges"}}
+        </button>
+    </footer>
+<form>

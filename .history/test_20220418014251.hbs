@@ -1,0 +1,10 @@
+<form class="preset-browser">
+    {{#each presets}}
+    <div class="list-item" onclick="window.makePreset"> {{title}} <p>{{stringified}}</p></div>
+    {{/each}}
+    <footer class="form-footer">
+        <button type="submit" name="submit" onclick="window.makePreset">
+            <i class="fas fa-save"></i>
+        </button>
+    </footer>
+<form>

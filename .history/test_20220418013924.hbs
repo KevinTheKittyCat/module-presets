@@ -1,0 +1,20 @@
+<form class="preset-browser">
+    {{#each presets}}
+    <div class="list-item" onclick="console.log('argh')"> {{title}} <p>{{stringified}}</p></div>
+    {{/each}}
+    <footer class="form-footer">
+        <button type="submit" name="submit" onclick="makePreset() {
+    const modules = game.settings.get("core", "moduleConfiguration")
+    const presetsObj = game.settings.get("modulePresets", "presets")
+    const stringified = JSON.stringify(modules)
+
+    const newPreset = [{title:"test", content: {modules}, stringified}]
+    const testtt = presetsObj.presets.concat(newPreset)
+
+    console.log(testtt)
+
+    game.settings.set("modulePresets", "presets", testtt)">
+            <i class="fas fa-save"></i>
+        </button>
+    </footer>
+<form>

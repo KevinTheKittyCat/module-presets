@@ -1,0 +1,15 @@
+{
+  "name": "module-presets",
+  "title": "Module Presets",
+  "description": "To have module presets pre-created so you don't need to remember which modules you were using, or switch between modules on live game vs creating a game.",
+  "version": "1.0.0",
+  "author": "Kevin-",
+  "styles": ["preset.css"],
+  "esmodules": [ "moduleps.js" ],
+  "packs": [],
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "minimumCoreVersion": "9",
+  "compatibleCoreVersion": "9"
+}

@@ -1,0 +1,15 @@
+.module-wrapper {
+    margin: 0 !important;
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+.preset-browser .window-content {
+    background: 0 !important;
+    margin:0;
+}
+
+.preset-browser .list-item {
+    background: rgba(0, 0, 0, 20%);
+}
