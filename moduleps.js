@@ -90,17 +90,19 @@ export class StorageFormApplication extends FormApplication {
         return super.getData().object; // the object from the constructor is where we are storing the data
     }
 
-    //Add Event Listener to bin to delete Preset
+    //Add Event Listener to "bin icon" to delete Preset
     activateListeners(html) {
         super.activateListeners(html);
         let listItems = html[0].querySelectorAll('.list-item')//.getElementById('deletePreset')
 
+        //Add Event Listener to "bin icon" to delete Preset
         listItems.forEach((listItem, i) => {
             listItem.querySelector('.deletePreset')?.addEventListener("click", event => {
                 this.deleteEntry(listItem.id)
                 $(listItem).remove()
             })
 
+            //Add Event Listener to title and description to select Preset
             listItem.querySelector('.select-group')?.addEventListener("click", event => {
                 const content = this.object.presets[i].content
 
@@ -144,7 +146,7 @@ export class titleFormApplication extends FormApplication {
         return super.getData().object; // the object from the constructor is where we are storing the data
     }
 
-    //Add Eventlistener to add a title for preset.
+    //Add Eventlistener to "add a title" for presets.
     activateListeners(html) {
         super.activateListeners(html);
         for (const element of html) {
