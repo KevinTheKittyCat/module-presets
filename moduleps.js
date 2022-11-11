@@ -4,14 +4,15 @@ Hooks.once("init", function () {
         scope: "world",
         config: false,
         type: Object,
-        name: "modulePresets"
+        name: "modulePresets",
+        default: {},
+        value: "test"
     });
 })
 
 Hooks.once('ready', () => {
     checkIfSettingsExists()
     addModulePresetButton()
-
 
     // Add Handlebars helper to translate the Json for each preset description.
     Handlebars.registerHelper('noModules', function (value) {
@@ -107,9 +108,16 @@ export class StorageFormApplication extends FormApplication {
                 const content = this.object.presets[i].content
 
                 const modules = game.settings.get("core", "moduleConfiguration")
+
+                const notAlike = Object.keys(modules).filter((m) => modules[m] !== content[m])
+
                 const returnedTarget = Object.assign(modules, content);
-                if (modules == returnedTarget) ui.notifications.warn("That Preset is currently in use.")
+                if (notAlike.length === 0) return ui.notifications.warn("That Preset is currently in use.");
                 game.settings.set("core", "moduleConfiguration", returnedTarget)
+                ui.notifications.info("Reloading Page to apply changes.");
+                setTimeout(() => { location.reload() }, 200)
+                //window.location.reload()
+
             })
         })
 
@@ -159,9 +167,9 @@ export class titleFormApplication extends FormApplication {
 
                             let result = ""
                             const keys = Object.keys(modules);
-                            
+
                             keys.forEach(function (key, i) {
-                                if(modules[key] === true && i !== (keys.length - 1)) result += `${key}, `;
+                                if (modules[key] === true && i !== (keys.length - 1)) result += `${key}, `;
                                 if (i === (keys.length - 1)) result += `${key}.`
                             })
                             const stringified = result
