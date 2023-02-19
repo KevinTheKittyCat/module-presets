@@ -73,7 +73,7 @@ function checkIfSettingsExists() {
 
         const changedModules = modules
         Object.keys(changedModules).forEach((m) => {
-            if (changedModules[m] === "module-presets") changedModules[m] = true
+            if (m === "module-presets") changedModules[m] = true
         })
 
         const OnlyPresetModule = { title: "Only Presets Module", id: "Only Preset", content: changedModules, stringified }
@@ -83,13 +83,6 @@ function checkIfSettingsExists() {
 
 
         game.settings.set("modulePresets", "presets", { presets: [noModules, OnlyPresetModule] })
-    }
-
-    if (Object.keys(setting).length === 0) {
-        const modules = game.settings.get("core", "moduleConfiguration")
-        Object.keys(modules).forEach((m) => { modules[m] = false })
-        const stringified = "No Modules"// JSON.stringify(content)
-        game.settings.set("modulePresets", "presets", { presets: [{ title: "No Modules", id: "No Modules", content: modules, stringified }] })
     }
 }
 
