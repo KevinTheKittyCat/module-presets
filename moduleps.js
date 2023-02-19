@@ -23,6 +23,7 @@ Hooks.once('ready', () => {
 
 //Add the Preset button beside Foundry's "Manage Modules" Button.
 function addModulePresetButton() {
+    if (!game.user.isGM) return;
     const originalModuleButton = $('*[data-action="modules"]')[0]
 
     const element = originalModuleButton;
@@ -64,6 +65,26 @@ function openModulePresets() {
 
 function checkIfSettingsExists() {
     const setting = game.settings.get("modulePresets", "presets")
+    if (Object.keys(setting).length === 0) {
+        const modules = game.settings.get("core", "moduleConfiguration")
+        Object.keys(modules).forEach((m) => { modules[m] = false })
+        const stringified = "No Modules"// JSON.stringify(content)
+        const noModules = { title: "No Modules", id: "No Modules", content: modules, stringified }
+
+        const changedModules = modules
+        Object.keys(changedModules).forEach((m) => {
+            if (changedModules[m] === "module-presets") changedModules[m] = true
+        })
+
+        const OnlyPresetModule = { title: "Only Presets Module", id: "Only Preset", content: modules, stringified }
+
+
+
+
+
+        game.settings.set("modulePresets", "presets", { presets: [noModules, OnlyPresetModule] })
+    }
+
     if (Object.keys(setting).length === 0) {
         const modules = game.settings.get("core", "moduleConfiguration")
         Object.keys(modules).forEach((m) => { modules[m] = false })
