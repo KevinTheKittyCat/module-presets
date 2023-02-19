@@ -76,7 +76,7 @@ function checkIfSettingsExists() {
             if (changedModules[m] === "module-presets") changedModules[m] = true
         })
 
-        const OnlyPresetModule = { title: "Only Presets Module", id: "Only Preset", content: modules, stringified }
+        const OnlyPresetModule = { title: "Only Presets Module", id: "Only Preset", content: changedModules, stringified }
 
 
 
